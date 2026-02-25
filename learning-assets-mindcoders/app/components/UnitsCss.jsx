@@ -1,6 +1,5 @@
 export default function UnitsTable() {
   const units = [
-  
     {
       unit: "px",
       description:
@@ -32,7 +31,6 @@ export default function UnitsTable() {
       example: "font-size: 12pt;",
     },
 
-  
     {
       unit: "%",
       description:
@@ -76,7 +74,6 @@ export default function UnitsTable() {
       example: "font-size: 10vmax;",
     },
 
-   
     {
       unit: "ch",
       description:
@@ -111,17 +108,23 @@ export default function UnitsTable() {
 
   return (
     <div className="p-6 bg-white text-black rounded-xl shadow-md">
- <h1 className="text-4xl font-bold mb-6 p-6 rounded-xl bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 text-gray-900 shadow-lg tracking-wide text-center">
-       CSS Units 
+      <h1 className="text-4xl font-bold mb-6 p-6 rounded-xl bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 text-gray-900 shadow-lg tracking-wide text-center">
+        CSS Units
       </h1>
 
       <div className="overflow-x-auto">
         <table className="w-full border border-gray-300 rounded-lg">
           <thead className="bg-gray-100">
             <tr>
-              <th className="text-left p-3 px-15 border-b border-gray-300">Unit</th>
-              <th className="text-left p-3 border-b border-gray-300">Description</th>
-              <th className="text-left p-3 border-b border-gray-300">Example</th>
+              <th className="text-left p-3 border-b border-gray-300 border-r w-[25%]">
+                Unit
+              </th>
+              <th className="text-left p-3 border-b border-gray-300 border-r w-[50%]">
+                Description
+              </th>
+              <th className="text-left p-3 border-b border-gray-300 w-[25%]">
+                Example
+              </th>
             </tr>
           </thead>
 
@@ -134,13 +137,17 @@ export default function UnitsTable() {
                   key={index}
                   className={`${
                     isHeading
-                      ? "bg-gray-200 font-semibold  "
+                      ? "bg-gray-200 font-semibold"
                       : "hover:bg-gray-100"
                   } border-b border-gray-300`}
                 >
-                  <td className="p-3">{row.unit}</td>
-                  <td className="p-3">{row.description}</td>
-                  <td className="p-7">
+                  <td className="p-3 border-r border-gray-300 w-[25%]">
+                    {row.unit}
+                  </td>
+                  <td className="p-3 border-r border-gray-300 w-[50%]">
+                    {row.description}
+                  </td>
+                  <td className="p-3 w-[25%]">
                     {row.example && (
                       <pre className="bg-[#0b1e39] text-green-300 p-3 rounded-lg text-sm whitespace-pre">
                         {row.example}

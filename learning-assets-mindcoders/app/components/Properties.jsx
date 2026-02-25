@@ -4,14 +4,26 @@ import React from "react";
 function Table({ title, data }) {
   return (
     <div className="mt-16">
-      <h2 className="text-3xl font-bold mb-4 text-[#5A4AE3]">{title}</h2>
 
-      <table className="w-full border border-gray-300 border-collapse shadow-md bg-white">
-        <thead className="bg-gray-200 text-black">
+      <h2 className="text-3xl font-bold mb-4 text-[#5A4AE3]">
+        {title}
+      </h2>
+
+      <table className="
+        w-full border border-gray-300 border-collapse 
+        shadow-md bg-white rounded-lg overflow-hidden
+      ">
+        <thead className="bg-gray-100 text-black border-b border-gray-300">
           <tr>
-            <th className="border border-gray-300 p-3 text-xl w-1/4">Property</th>
-            <th className="border border-gray-300 p-3 text-xl w-2/4">Description</th>
-            <th className="border border-gray-300 p-3 text-xl w-1/4">Example</th>
+            <th className="border border-gray-300 p-3 text-xl w-1/4">
+              Property
+            </th>
+            <th className="border border-gray-300 p-3 text-xl w-2/4">
+              Description
+            </th>
+            <th className="border border-gray-300 p-3 text-xl w-1/4">
+              Example
+            </th>
           </tr>
         </thead>
 
@@ -19,19 +31,31 @@ function Table({ title, data }) {
           {data.map((item, i) => (
             <tr
               key={i}
-              className="bg-white text-black hover:bg-gray-100 transition"
+              className="
+                bg-white text-black 
+                hover:bg-gray-50 hover:shadow-sm 
+                transition-all border-b border-gray-200
+              "
             >
               <td className="border border-gray-300 p-3 font-mono text-lg">
                 {item.name}
               </td>
+
               <td className="border border-gray-300 p-3 text-lg">
                 {item.desc}
               </td>
+
               <td className="border border-gray-300 p-3">
-                <pre className="bg-gray-900 text-green-300 p-3 rounded text-sm overflow-x-auto whitespace-pre">
+                <pre className="
+                  bg-[#0b1e39] text-green-300 
+                  p-3 rounded-md text-sm 
+                  overflow-x-auto whitespace-pre
+                  border border-gray-400 shadow-sm
+                ">
 {`${item.example}`}
                 </pre>
               </td>
+
             </tr>
           ))}
         </tbody>
@@ -158,7 +182,12 @@ export default function CSSPropertiesTable() {
     <div className="w-full min-h-screen px-8 py-8 bg-white text-black">
 
       <h1
-        className="text-4xl font-bold mb-6 p-6 rounded-xl bg-gray-100 text-black shadow text-center"
+        className="
+          text-4xl font-bold mb-6 p-6 rounded-xl 
+          bg-gray-100 text-black shadow-xl 
+          text-center border border-gray-300 
+          hover:shadow-2xl transition
+        "
       >
         🎨 Complete CSS Properties Guide
       </h1>
