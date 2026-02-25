@@ -113,51 +113,41 @@ export default function UnitsTable() {
       </h1>
 
       <div className="overflow-x-auto">
-        <table className="w-full border border-gray-300 rounded-lg">
-          <thead className="bg-gray-100">
+        <table className="w-full border border-gray-300 rounded-lg lg:table table-auto">
+          <thead className="bg-gray-100 hidden lg:table-header-group">
             <tr>
-              <th className="text-left p-3 border-b border-gray-300 border-r w-[25%]">
-                Unit
-              </th>
-              <th className="text-left p-3 border-b border-gray-300 border-r w-[50%]">
-                Description
-              </th>
-              <th className="text-left p-3 border-b border-gray-300 w-[25%]">
-                Example
-              </th>
+              <th className="text-left p-3 border-b border-gray-300 border-r w-[25%]">Unit</th>
+              <th className="text-left p-3 border-b border-gray-300 border-r w-[50%]">Description</th>
+              <th className="text-left p-3 border-b border-gray-300 w-[25%]">Example</th>
             </tr>
           </thead>
 
           <tbody>
-            {units.map((row, index) => {
-              const isHeading = row.description === "" && row.example === "";
+            {units.map((row, index) => (
+              <tr
+                key={index}
+                className="border-b border-gray-300 lg:table-row flex flex-col lg:flex-row p-3 lg:p-0 hover:bg-gray-100"
+              >
+                {/* Unit */}
+                <td className="p-3 border-r border-gray-300 lg:w-[25%] font-semibold">
+                  {row.unit}
+                </td>
 
-              return (
-                <tr
-                  key={index}
-                  className={`${
-                    isHeading
-                      ? "bg-gray-200 font-semibold"
-                      : "hover:bg-gray-100"
-                  } border-b border-gray-300`}
-                >
-                  <td className="p-3 border-r border-gray-300 w-[25%]">
-                    {row.unit}
-                  </td>
-                  <td className="p-3 border-r border-gray-300 w-[50%]">
-                    {row.description}
-                  </td>
-                  <td className="p-3 w-[25%]">
-                    {row.example && (
-                      <pre className="bg-[#0b1e39] text-green-300 p-3 rounded-lg text-sm whitespace-pre">
-                        {row.example}
-                      </pre>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
+                {/* Description */}
+                <td className="p-3 border-r border-gray-300 lg:w-[50%]">
+                  {row.description}
+                </td>
+
+                {/* Example (mobile me niche dikhega) */}
+                <td className="p-3 lg:w-[25%]">
+                  <pre className="bg-[#0b1e39] text-green-300 p-3 rounded-lg text-sm whitespace-pre-wrap break-words">
+                    {row.example}
+                  </pre>
+                </td>
+              </tr>
+            ))}
           </tbody>
+
         </table>
       </div>
     </div>
