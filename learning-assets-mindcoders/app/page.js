@@ -10,9 +10,10 @@ export default function SelectorTable() {
   return (
     <>
       <SelectorTablePage/>
+      <UnitsCss/>
       <BoxModel/>
       <Properties/>
-      <UnitsCss/>
+      
     </>
   );
 }
