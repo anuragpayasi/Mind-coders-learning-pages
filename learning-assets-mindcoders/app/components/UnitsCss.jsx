@@ -3,105 +3,92 @@ export default function UnitsTable() {
     {
       unit: "px",
       description:
-        "Pixel — A fixed unit based on the device’s resolution. Sabse common web unit. Responsive nahi hota par precision deta hai. High DPI screens pr scaling ho sakti hai.",
+        "A pixel is the smallest dot on the screen. Using px gives fixed size — it will not change on different screens.",
       example: "width: 100px;",
     },
-    {
-      unit: "cm",
-      description:
-        "Centimeters — Real-world physical measurement. Mainly print layouts me use hotta hai; screens par consistent nahi hotta.",
-      example: "width: 5cm;",
-    },
-    {
-      unit: "mm",
-      description:
-        "Millimeters — Real physical measurement. CSS print media me useful, lekin screens par accurate nahi hotta.",
-      example: "width: 20mm;",
-    },
-    {
-      unit: "in",
-      description:
-        "Inches — 1 inch = 96 pixels. Mostly printing ke liye use hotta hai. Screens par device DPI ke karan inaccurate ho sakta hai.",
-      example: "width: 1in;",
-    },
-    {
-      unit: "pt",
-      description:
-        "Points — Typography unit (1pt = 1/72 inch). Traditionally print industry me use hotta hai, web me rarely used.",
-      example: "font-size: 12pt;",
-    },
+    
+    
+  
+    
 
     {
       unit: "%",
       description:
-        "Parent element ke size ka percentage. Layouts ko dynamic aur responsive banane ke liye sabse useful unit.",
+        "This unit is based on the size of the parent element. If you set width: 50%, it means half the width of its parent box.",
       example: "width: 50%;",
     },
     {
       unit: "em",
       description:
-        "Current element ke parent font-size par based hotta hai. Nested elements me multiply ho jata hai, isliye kabhi-kabhi unpredictable.",
+        "em depends on the font-size of the parent. Example: If parent font-size is 20px, then 1em = 20px.",
       example: "font-size: 2em;",
     },
     {
       unit: "rem",
       description:
-        "Root (HTML) ke font-size par based hotta hai. Predictable aur best unit for spacing + typography. Responsive design me standard unit.",
+        "rem depends on the font-size of the root (html) element. Example: If HTML font-size is 16px, then 1rem = 16px everywhere More stable and preferred over em.",
       example: "margin: 1rem;",
     },
     {
       unit: "vw",
       description:
-        "Viewport width ka 1%. Screen size ke hisaab se scale hotta hai — hero sections ke liye perfect.",
+        "vw is based on the width of the screen. 1vw = 1% of the browser’s width. Good for responsive designs.",
       example: "font-size: 5vw;",
     },
     {
       unit: "vh",
       description:
-        "Viewport height ka 1%. Full-screen sections banane me useful.",
+        "vh is based on the height of the screen. 1vh = 1% of the browser’s height.",
       example: "height: 100vh;",
     },
     {
       unit: "vmin",
       description:
-        "Viewport ki chhoti side ka 1%. Aspect-ratio based scaling ke liye best.",
+        "vmin means 1% of the smaller side of the viewport (screen). It is useful when you want your design to scale based on the smallest dimension.",
       example: "font-size: 10vmin;",
     },
     {
       unit: "vmax",
       description:
-        "Viewport ki badi side ka 1%. Large responsive typography me helpful.",
+        "vmax means 1% of the larger side of the viewport. It helps create large, responsive text or elements that scale with the widest side of the screen.",
       example: "font-size: 10vmax;",
     },
+    {
+      unit: "fr",
+      description:
+        "fr is used in CSS Grid. It divides space into equal flexible parts. Example: 1fr 2fr → second column gets double space compared to first.",
+      example: " grid-template-columns: 1fr 2fr; ",
+    },
+
 
     {
       unit: "ch",
       description:
-        '"0" character ki width ke based hotta hai. Readability-focused layouts, text boxes, forms me perfect.',
+        "Size based on the width of the character '0'. Useful for text boxes or code layouts.",
       example: "width: 40ch;",
     },
     {
       unit: "ex",
       description:
-        'Lowercase "x" ki height. Fonts ke inner proportions ko follow karta hai. Rare but precise.',
+        'ex is based on the height of the lowercase letter “x” in the current font. It follows the font’s inner proportions. Rarely used, but very precise.',
       example: "height: 10ex;",
     },
     {
       unit: "svh",
       description:
-        "Smallest viewport height — mobile browsers ke dynamic UI ko ignore kar deta hai. Stable layouts ke liye ideal.",
+        "svh means the smallest possible viewport height. It ignores mobile browser bars (like address bar), so layout stays stable. Very useful for mobile-safe sections.",
       example: "height: 100svh;",
     },
     {
       unit: "lvh",
       description:
-        "Largest viewport height — address bar hidden होने पर bhi stable. Fullscreen web-apps me helpful.",
+        "lvh means the largest possible viewport height. Even when the browser UI hides (like scrolling down), the height stays stable. Great for fullscreen web apps.",
       example: "height: 100lvh;",
     },
     {
       unit: "dvh",
       description:
-        "Dynamic viewport height — scroll hone ke sath change hotta hai. Modern mobile-friendly layouts ke liye best.",
+        "dvh changes dynamically when the browser UI appears or disappears. Perfect for modern mobile layouts that adapt during scrolling.",
       example: "height: 100dvh;",
     },
   ];
