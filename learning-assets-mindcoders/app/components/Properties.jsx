@@ -1,70 +1,80 @@
 "use client";
 import React from "react";
 
+/* ----------------- MOBILE + DESKTOP RESPONSIVE TABLE ----------------- */
+
 function Table({ title, data }) {
   return (
-    <div className="mt-16">
+    <div className="mt-16 w-full">
 
-      <h2 className="text-3xl font-bold mb-4 text-[#5A4AE3]">
+      <h2 className="text-3xl font-bold mb-5 text-[#5A4AE3] tracking-wide">
         {title}
       </h2>
 
-      <table className="
-        w-full border border-gray-300 border-collapse 
-        shadow-md bg-white rounded-lg overflow-hidden
-      ">
-        <thead className="bg-gray-100 text-black border-b border-gray-300">
-          <tr>
-            <th className="border border-gray-300 p-3 text-xl w-1/4">
-              Property
-            </th>
-            <th className="border border-gray-300 p-3 text-xl w-2/4">
-              Description
-            </th>
-            <th className="border border-gray-300 p-3 text-xl w-1/4">
-              Example
-            </th>
-          </tr>
-        </thead>
+      {/* WRAPPER to remove any scroll */}
+      <div className="w-full overflow-x-hidden">
 
-        <tbody>
+        {/* DESKTOP TABLE */}
+        <div className="overflow-x-auto hidden md:block">
+          <table className="w-full bg-white border border-gray-300 rounded-xl shadow min-w-[900px]">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="p-4 text-lg border-b border-gray-300 w-[25%]">
+                  Property
+                </th>
+                <th className="p-4 text-lg border-b border-gray-300 w-[50%]">
+                  Description
+                </th>
+                <th className="p-4 text-lg border-b border-gray-300 w-[25%]">
+                  Example
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {data.map((item, i) => (
+                <tr
+                  key={i}
+                  className="hover:bg-gray-100 transition border-b border-gray-300"
+                >
+                  <td className="p-4 font-mono text-gray-900 align-top">
+                    {item.name}
+                  </td>
+                  <td className="p-4 align-top">{item.desc}</td>
+                  <td className="p-4 align-top">
+                    <pre className="bg-gray-900 text-green-300 p-3 rounded-lg text-sm whitespace-pre-wrap">
+                      {item.example}
+                    </pre>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* MOBILE CARDS */}
+        <div className="md:hidden space-y-4">
           {data.map((item, i) => (
-            <tr
+            <div
               key={i}
-              className="
-                bg-white text-black 
-                hover:bg-gray-50 hover:shadow-sm 
-                transition-all border-b border-gray-200
-              "
+              className="border border-gray-300 rounded-xl p-4 shadow bg-white"
             >
-              <td className="border border-gray-300 p-3 font-mono text-lg">
-                {item.name}
-              </td>
+              <p className="font-bold text-xl mb-2">{item.name}</p>
+              <p className="text-gray-700 mb-3">{item.desc}</p>
 
-              <td className="border border-gray-300 p-3 text-lg">
-                {item.desc}
-              </td>
-
-              <td className="border border-gray-300 p-3">
-                <pre className="
-                  bg-[#0b1e39] text-green-300 
-                  p-3 rounded-md text-sm 
-                  overflow-x-auto whitespace-pre
-                  border border-gray-400 shadow-sm
-                ">
-{`${item.example}`}
-                </pre>
-              </td>
-
-            </tr>
+              <pre className="bg-gray-900 text-green-300 p-3 rounded-lg text-sm whitespace-pre-wrap">
+                {item.example}
+              </pre>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+
+      </div>
     </div>
   );
 }
 
-/* DATA — NO CHANGE AT ALL */
+/* ----------------- DATA (UNCHANGED) ----------------- */
 
 const textProps = [
   { name: "color", desc: "Sets the text color.", example: `p { color: red; }` },
@@ -175,20 +185,13 @@ const variableProps = [
   { name: "var()", desc: "Uses a CSS variable.", example: `p { color: var(--main); }` },
 ];
 
-/* MAIN COMPONENT */
+/* ----------------- MAIN PAGE ----------------- */
 
 export default function CSSPropertiesTable() {
   return (
-    <div className="w-full min-h-screen px-8 py-8 bg-white text-black">
+    <div className="w-full min-h-screen px-6 md:px-12 py-10 bg-white text-black">
 
-      <h1
-        className="
-          text-4xl font-bold mb-6 p-6 rounded-xl 
-          bg-gray-100 text-black shadow-xl 
-          text-center border border-gray-300 
-          hover:shadow-2xl transition
-        "
-      >
+      <h1 className="text-4xl font-bold mb-8 p-6 rounded-xl bg-gray-100 text-black shadow text-center">
         🎨 Complete CSS Properties Guide
       </h1>
 

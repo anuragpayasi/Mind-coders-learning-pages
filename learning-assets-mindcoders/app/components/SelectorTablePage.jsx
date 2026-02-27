@@ -11,17 +11,18 @@ function Table({ title, data }) {
         {title}
       </h2>
 
-      <div className="overflow-x-auto rounded-xl shadow-lg border border-gray-200">
+      {/* DESKTOP TABLE */}
+      <div className="hidden md:block overflow-hidden rounded-xl shadow-lg border border-gray-200">
         <table className="w-full bg-white text-gray-900">
           <thead className="bg-gray-100 text-gray-700">
             <tr>
-              <th className="border-b border-gray-300 p-4 text-lg font-semibold w-1/4">
+              <th className="border-b border-gray-300 p-4 text-lg font-semibold min-w-[120px]">
                 Selector
               </th>
-              <th className="border-b border-gray-300 p-4 text-lg font-semibold w-2/4">
+              <th className="border-b border-gray-300 p-4 text-lg font-semibold min-w-[240px]">
                 Description
               </th>
-              <th className="border-b border-gray-300 p-4 text-lg font-semibold w-1/4">
+              <th className="border-b border-gray-300 p-4 text-lg font-semibold min-w-[200px]">
                 Code Snippet
               </th>
             </tr>
@@ -31,27 +32,26 @@ function Table({ title, data }) {
             {data.map((s, i) => (
               <tr
                 key={i}
-                className="
-                  hover:bg-gray-50 
-                  transition-all 
-                  border-b 
-                  border-gray-200
-                "
+                className="hover:bg-gray-50 transition-all border-b border-gray-200"
               >
-                <td className="p-4 font-mono text-gray-900">{s.name}</td>
+                <td className="p-4 font-mono text-gray-900 align-top">
+                  {s.name}
+                </td>
 
-                <td className="p-4 leading-relaxed">{s.description}</td>
+                <td className="p-4 leading-relaxed align-top">
+                  {s.description}
+                </td>
 
-                <td className="p-4">
+                <td className="p-4 align-top">
                   <pre
                     className="
-                      bg-[#0b1e39] 
-                      text-green-300 
-                      p-4 
-                      rounded-lg 
-                      text-sm 
-                      overflow-x-auto 
-                      whitespace-pre 
+                      bg-[#0b1e39]
+                      text-green-300
+                      p-4
+                      rounded-lg
+                      text-sm
+                      whitespace-pre-wrap
+                      break-words
                       shadow-inner
                     "
                   >
@@ -64,11 +64,40 @@ function Table({ title, data }) {
         </table>
       </div>
 
+      {/* MOBILE CARDS */}
+      <div className="md:hidden space-y-4">
+        {data.map((s, i) => (
+          <div
+            key={i}
+            className="border border-gray-200 rounded-xl p-4 shadow-sm bg-white"
+          >
+            <p className="font-bold text-xl mb-2">{s.name}</p>
+            <p className="text-gray-700 mb-3">{s.description}</p>
+
+            <pre
+              className="
+                bg-[#0b1e39]
+                text-green-300
+                p-4
+                rounded-lg
+                text-sm
+                whitespace-pre-wrap
+                break-words
+                shadow-inner
+              "
+            >
+{`${s.code}`}
+            </pre>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }
 
-/* ----------------- DATA (UNCHANGED EXACTLY SAME) ----------------- */
+
+/* ----------------- DATA (UNCHANGED 100%) ----------------- */
 
 const basicSelectors = [
   { name: "*", description: "Selects all elements.", code: `* {\n  margin: 0;\n}` },
@@ -104,9 +133,10 @@ const pseudoClasses = [
   { name: ":valid", description: "Valid input.", code: `input:valid {\n  border-color: green;\n}` }
 ];
 
+
 /* ----------------- MAIN PAGE ----------------- */
 
-export default function SelectorTable() {
+export default function SelectorTablePage() {
   return (
     <div className="w-full min-h-screen px-6 md:px-12 py-10 bg-white text-gray-900">
 
@@ -118,21 +148,28 @@ export default function SelectorTable() {
 
       <h1 className="text-4xl font-bold mt-10">What are Selectors in CSS?</h1>
       <p className="mt-3 text-lg leading-relaxed text-gray-800">
-        CSS selectors are rules that help you choose which HTML elements you want to style. They tell the browser, “apply this CSS to these elements.” Using selectors, you can change colors, size, spacing, and much more. Selectors make it easy to target specific parts of your webpage. For more details, you can take reference from the table below
+        CSS selectors are rules that help you choose which HTML elements you want to style.
+        They tell the browser, “apply this CSS to these elements.” Using selectors, you can
+        change colors, size, spacing, and much more. Selectors make it easy to target specific
+        parts of your webpage. For more details, you can take reference from the table below
       </p>
 
       <Table title="Basic Selectors" data={basicSelectors} />
 
       <h1 className="text-4xl font-bold mt-14">What are Pseudo Elements in CSS?</h1>
       <p className="mt-3 text-lg leading-relaxed text-gray-800">
-        Pseudo-elements in CSS are used to style specific parts of an element without adding extra HTML. They let you target things like the first letter, first line, or even add content before or after an element. Pseudo-elements start with two colons (::). For more details, you can take reference from the table below.
+        Pseudo-elements in CSS are used to style specific parts of an element without adding extra HTML.
+        They let you target things like the first letter, first line, or even add content before or after an element.
+        Pseudo-elements start with two colons (::). For more details, you can take reference from the table below.
       </p>
 
       <Table title="Pseudo Elements" data={pseudoElements} />
 
       <h1 className="text-4xl font-bold mt-14">What are Pseudo Classes in CSS?</h1>
       <p className="mt-3 text-lg leading-relaxed text-gray-800">
-        Pseudo-classes in CSS are used to style elements in a special state. They help you apply styles when a user interacts with an element — like when a link is hovered, clicked, or visited. Pseudo-classes start with a single colon (:). For more details, you can take reference from the table below.
+        Pseudo-classes in CSS are used to style elements in a special state. They help you apply styles
+        when a user interacts with an element — like when a link is hovered, clicked, or visited.
+        Pseudo-classes start with a single colon (:). For more details, you can take reference from the table below.
       </p>
 
       <Table title="Pseudo Classes" data={pseudoClasses} />

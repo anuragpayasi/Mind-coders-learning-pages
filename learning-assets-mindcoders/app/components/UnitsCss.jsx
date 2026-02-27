@@ -9,25 +9,25 @@ export default function UnitsTable() {
     {
       unit: "cm",
       description:
-        "Centimeters — Real-world physical measurement. Mainly print layouts me use hota hai; screens par consistent nahi hota.",
+        "Centimeters — Real-world physical measurement. Mainly print layouts me use hotta hai; screens par consistent nahi hotta.",
       example: "width: 5cm;",
     },
     {
       unit: "mm",
       description:
-        "Millimeters — Real physical measurement. CSS print media me useful, lekin screens par accurate nahi hota.",
+        "Millimeters — Real physical measurement. CSS print media me useful, lekin screens par accurate nahi hotta.",
       example: "width: 20mm;",
     },
     {
       unit: "in",
       description:
-        "Inches — 1 inch = 96 pixels. Mostly printing ke liye use hota hai. Screens par device DPI ke karan inaccurate ho sakta hai.",
+        "Inches — 1 inch = 96 pixels. Mostly printing ke liye use hotta hai. Screens par device DPI ke karan inaccurate ho sakta hai.",
       example: "width: 1in;",
     },
     {
       unit: "pt",
       description:
-        "Points — Typography unit (1pt = 1/72 inch). Traditionally print industry me use hota hai, web me rarely used.",
+        "Points — Typography unit (1pt = 1/72 inch). Traditionally print industry me use hotta hai, web me rarely used.",
       example: "font-size: 12pt;",
     },
 
@@ -40,19 +40,19 @@ export default function UnitsTable() {
     {
       unit: "em",
       description:
-        "Current element ke parent font-size par based hota hai. Nested elements me multiply ho jata hai, isliye kabhi-kabhi unpredictable.",
+        "Current element ke parent font-size par based hotta hai. Nested elements me multiply ho jata hai, isliye kabhi-kabhi unpredictable.",
       example: "font-size: 2em;",
     },
     {
       unit: "rem",
       description:
-        "Root (HTML) ke font-size par based hota hai. Predictable aur best unit for spacing + typography. Responsive design me standard unit.",
+        "Root (HTML) ke font-size par based hotta hai. Predictable aur best unit for spacing + typography. Responsive design me standard unit.",
       example: "margin: 1rem;",
     },
     {
       unit: "vw",
       description:
-        "Viewport width ka 1%. Screen size ke hisaab se scale hota hai — hero sections ke liye perfect.",
+        "Viewport width ka 1%. Screen size ke hisaab se scale hotta hai — hero sections ke liye perfect.",
       example: "font-size: 5vw;",
     },
     {
@@ -77,7 +77,7 @@ export default function UnitsTable() {
     {
       unit: "ch",
       description:
-        '"0" character ki width ke based hota hai. Readability-focused layouts, text boxes, forms me perfect.',
+        '"0" character ki width ke based hotta hai. Readability-focused layouts, text boxes, forms me perfect.',
       example: "width: 40ch;",
     },
     {
@@ -101,54 +101,60 @@ export default function UnitsTable() {
     {
       unit: "dvh",
       description:
-        "Dynamic viewport height — scroll hone ke sath change hota hai. Modern mobile-friendly layouts ke liye best.",
+        "Dynamic viewport height — scroll hone ke sath change hotta hai. Modern mobile-friendly layouts ke liye best.",
       example: "height: 100dvh;",
     },
   ];
 
   return (
-    <div className="p-6 bg-white text-black rounded-xl shadow-md">
+    <div className="p-6 bg-white min-h-screen text-black rounded-xl shadow-md overflow-x-hidden">
       <h1 className="text-4xl font-bold mb-6 p-6 rounded-xl bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 text-gray-900 shadow-lg tracking-wide text-center">
         CSS Units
       </h1>
 
-      <div className="overflow-x-auto">
-        <table className="w-full border border-gray-300 rounded-lg lg:table table-auto">
-          <thead className="bg-gray-100 hidden lg:table-header-group">
-            <tr>
-              <th className="text-left p-3 border-b border-gray-300 border-r w-[25%]">Unit</th>
-              <th className="text-left p-3 border-b border-gray-300 border-r w-[50%]">Description</th>
-              <th className="text-left p-3 border-b border-gray-300 w-[25%]">Example</th>
-            </tr>
-          </thead>
+      {/* WRAPPER to prevent screen overflow */}
+      <div className="w-full overflow-x-hidden">
 
-          <tbody>
-            {units.map((row, index) => (
-              <tr
-                key={index}
-                className="border-b border-gray-300 lg:table-row flex flex-col lg:flex-row p-3 lg:p-0 hover:bg-gray-100"
-              >
-                {/* Unit */}
-                <td className="p-3 border-r border-gray-300 lg:w-[25%] font-semibold">
-                  {row.unit}
-                </td>
-
-                {/* Description */}
-                <td className="p-3 border-r border-gray-300 lg:w-[50%]">
-                  {row.description}
-                </td>
-
-                {/* Example (mobile me niche dikhega) */}
-                <td className="p-3 lg:w-[25%]">
-                  <pre className="bg-[#0b1e39] text-green-300 p-3 rounded-lg text-sm whitespace-pre-wrap break-words">
-                    {row.example}
-                  </pre>
-                </td>
+        {/* DESKTOP/TABLET TABLE */}
+        <div className="overflow-x-auto md:overflow-visible">
+          <table className="w-full border border-gray-300 rounded-lg hidden md:table min-w-[800px]">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="text-left p-3 w-[25%] border-b border-gray-300">Unit</th>
+                <th className="text-left p-3 w-[50%] border-b border-gray-300">Description</th>
+                <th className="text-left p-3 w-[25%] border-b border-gray-300">Example</th>
               </tr>
-            ))}
-          </tbody>
+            </thead>
 
-        </table>
+            <tbody>
+              {units.map((row, index) => (
+                <tr key={index} className="hover:bg-gray-100 border-b border-gray-300">
+                  <td className="p-3">{row.unit}</td>
+                  <td className="p-3">{row.description}</td>
+                  <td className="p-7">
+                    <pre className="bg-[#0b1e39] text-green-300 p-3 rounded-lg text-sm whitespace-pre">
+                      {row.example}
+                    </pre>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* MOBILE CARDS */}
+        <div className="md:hidden space-y-4">
+          {units.map((row, index) => (
+            <div key={index} className="border border-gray-300 rounded-xl p-4 shadow-sm">
+              <p className="font-bold text-lg mb-1">{row.unit}</p>
+              <p className="text-sm mb-3">{row.description}</p>
+              <pre className="bg-[#0b1e39] text-green-300 p-3 rounded-lg text-sm whitespace-pre">
+                {row.example}
+              </pre>
+            </div>
+          ))}
+        </div>
+
       </div>
     </div>
   );

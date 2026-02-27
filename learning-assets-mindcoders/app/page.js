@@ -9,8 +9,8 @@ import UnitsCss from "./components/UnitsCss"
 export default function SelectorTable() {
   return (
     <>
-      <SelectorTablePage />
-      <BoxModel />
+      <SelectorTablePage/>
+      <BoxModel/>
       <Properties/>
       <UnitsCss/>
     </>
